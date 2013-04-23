@@ -23,7 +23,6 @@
 #import "AKTabBar.h"
 
 static int kInterTabMargin = 1;
-static int kTopEdgeWidth   = 1;
 
 @implementation AKTabBar
 
@@ -91,6 +90,7 @@ static int kTopEdgeWidth   = 1;
     
     CGContextFillRect(ctx, rect);
     
+    /*
     // Drawing the gradient
     CGContextSaveGState(ctx);
     {
@@ -110,15 +110,13 @@ static int kTopEdgeWidth   = 1;
     }
     CGContextRestoreGState(ctx);
     
+     */
+     
     // Drawing the top dark emboss
     CGContextSaveGState(ctx);
     {
-        UIColor *topEdgeColor = _topEdgeColor;
-        if (!topEdgeColor) {
-            _edgeColor ? _edgeColor : [UIColor colorWithRed:.1f green:.1f blue:.1f alpha:.8f];
-        }
-        CGContextSetFillColorWithColor(ctx, topEdgeColor.CGColor);
-        CGContextFillRect(ctx, CGRectMake(0, 0, rect.size.width, kTopEdgeWidth));
+        CGContextSetFillColorWithColor(ctx, _edgeColor ? [_edgeColor CGColor] : [[UIColor colorWithRed:.1f green:.1f blue:.1f alpha:.8f] CGColor]);
+        CGContextFillRect(ctx, CGRectMake(0, 0, rect.size.width, 1));
     }
     CGContextRestoreGState(ctx);
     
@@ -135,7 +133,7 @@ static int kTopEdgeWidth   = 1;
     // Drawing the edge border lines
     CGContextSetFillColorWithColor(ctx, _edgeColor ? [_edgeColor CGColor] : [[UIColor colorWithRed:.1f green:.1f blue:.1f alpha:.8f] CGColor]);
     for (AKTab *tab in _tabs)
-        CGContextFillRect(ctx, CGRectMake(tab.frame.origin.x - kInterTabMargin, kTopEdgeWidth, kInterTabMargin, rect.size.height));
+        CGContextFillRect(ctx, CGRectMake(tab.frame.origin.x - kInterTabMargin, 0, kInterTabMargin, rect.size.height));
     
 }
 
