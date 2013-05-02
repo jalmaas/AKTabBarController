@@ -90,28 +90,7 @@ static int kInterTabMargin = 1;
     
     CGContextFillRect(ctx, rect);
     
-    /*
-    // Drawing the gradient
-    CGContextSaveGState(ctx);
-    {
-        // We set the parameters of the gradient multiply blend
-        size_t num_locations = 2;
-        CGFloat locations[2] = {0.0, 1.0};
-        CGFloat components[8] = {0.9, 0.9, 0.9, 1.0,    // Start color
-                                 0.2, 0.2, 0.2, 0.8};    // End color
-        
-        CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-        CGGradientRef gradient = _tabColors ? CGGradientCreateWithColors(colorSpace, (__bridge CFArrayRef)_tabColors, locations) : CGGradientCreateWithColorComponents (colorSpace, components, locations, num_locations);
-        CGContextSetBlendMode(ctx, kCGBlendModeMultiply);
-        CGContextDrawLinearGradient(ctx, gradient, CGPointMake(0, 0), CGPointMake(0, rect.size.height), kCGGradientDrawsAfterEndLocation);
-        
-        CGColorSpaceRelease(colorSpace);
-        CGGradientRelease(gradient);
-    }
-    CGContextRestoreGState(ctx);
     
-     */
-     
     // Drawing the top dark emboss
     CGContextSaveGState(ctx);
     {
@@ -124,7 +103,7 @@ static int kInterTabMargin = 1;
     CGContextSaveGState(ctx);
     {
         CGContextSetBlendMode(ctx, kCGBlendModeOverlay);
-        CGContextSetRGBFillColor(ctx, 0.9, 0.9, 0.9, 0.7);
+        CGContextSetRGBFillColor(ctx, 0.9, 0.9, 0.9, 0.3);
         CGContextFillRect(ctx, CGRectMake(0, 1, rect.size.width, 1));
 
     }
